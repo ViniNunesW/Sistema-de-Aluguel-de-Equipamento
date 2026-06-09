@@ -2,3 +2,5 @@
 Sistema: MySQL
 
 Grupo: Guilherme Rodrigues Fagundes, Kaio Souza Cadorin, Miguel Arcanjo Tomaz e Vinícius Nunes Westrup
+
+diagrama do banco de dados: https://dbdiagram.io/d/6a275fa28eb8ca4bfe7f850b
