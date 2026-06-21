@@ -1,5 +1,5 @@
 -- =========================
--- TABELA CLIENTE
+-- CLIENTE
 -- =========================
 CREATE TABLE cliente (
   id_cliente INT PRIMARY KEY AUTO_INCREMENT,
@@ -16,7 +16,7 @@ CREATE TABLE cliente (
 );
 
 -- =========================
--- TABELA PROFISSIONAL
+-- PROFISSIONAL
 -- =========================
 CREATE TABLE profissional (
   id_profissional INT PRIMARY KEY AUTO_INCREMENT,
@@ -28,7 +28,7 @@ CREATE TABLE profissional (
 );
 
 -- =========================
--- TABELA CATEGORIA_ARMA
+-- CATEGORIA ARMA
 -- =========================
 CREATE TABLE categoria_arma (
   id_categoria INT PRIMARY KEY AUTO_INCREMENT,
@@ -37,7 +37,7 @@ CREATE TABLE categoria_arma (
 );
 
 -- =========================
--- TABELA ARMA
+-- ARMA
 -- =========================
 CREATE TABLE arma (
   id_arma INT PRIMARY KEY AUTO_INCREMENT,
@@ -47,11 +47,24 @@ CREATE TABLE arma (
   id_categoria INT,
   status VARCHAR(255),
   data_aquisicao DATE,
+  valor_hora DECIMAL(10,2),
   FOREIGN KEY (id_categoria) REFERENCES categoria_arma(id_categoria)
 );
 
 -- =========================
--- TABELA SESSAO_TIRO
+-- MUNICAO
+-- =========================
+CREATE TABLE municao (
+  id_municao INT PRIMARY KEY AUTO_INCREMENT,
+  tipo VARCHAR(255),
+  calibre VARCHAR(255),
+  fabricante VARCHAR(255),
+  valor_unitario DECIMAL(10,2),
+  quantidade_estoque INT
+);
+
+-- =========================
+-- SESSAO TIRO
 -- =========================
 CREATE TABLE sessao_tiro (
   id_sessao INT PRIMARY KEY AUTO_INCREMENT,
@@ -65,20 +78,23 @@ CREATE TABLE sessao_tiro (
 );
 
 -- =========================
--- TABELA ALUGUEL_ARMA
+-- ALUGUEL ARMA
 -- =========================
 CREATE TABLE aluguel_arma (
   id_aluguel INT PRIMARY KEY AUTO_INCREMENT,
   id_sessao INT,
   id_arma INT,
+  id_municao INT,
   tempo_utilizacao INT,
+  quantidade_municao INT,
   valor_aluguel DECIMAL(10,2),
   FOREIGN KEY (id_sessao) REFERENCES sessao_tiro(id_sessao),
-  FOREIGN KEY (id_arma) REFERENCES arma(id_arma)
+  FOREIGN KEY (id_arma) REFERENCES arma(id_arma),
+  FOREIGN KEY (id_municao) REFERENCES municao(id_municao)
 );
 
 -- =========================
--- TABELA PAGAMENTO
+-- PAGAMENTO
 -- =========================
 CREATE TABLE pagamento (
   id_pagamento INT PRIMARY KEY AUTO_INCREMENT,
@@ -90,7 +106,7 @@ CREATE TABLE pagamento (
 );
 
 -- =========================
--- TABELA MANUTENCAO
+-- MANUTENCAO
 -- =========================
 CREATE TABLE manutencao (
   id_manutencao INT PRIMARY KEY AUTO_INCREMENT,
