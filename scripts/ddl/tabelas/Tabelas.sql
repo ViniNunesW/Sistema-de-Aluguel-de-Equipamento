@@ -1,100 +1,103 @@
+-- =========================
+-- TABELA CLIENTE
+-- =========================
 CREATE TABLE cliente (
-  id int PRIMARY KEY,
-  nome varchar(255),
-  telefone varchar(255),
-  posse_de_arma bit,
-  cpf varchar(255),
-  data_nascimento date,
-  email varchar(255),
-  endereco varchar(255),
-  cidade varchar(255),
-  estado varchar(255),
-  cep varchar(255),
-  numero_registro_arma varchar(255)
+  id_cliente INT PRIMARY KEY AUTO_INCREMENT,
+  nome VARCHAR(255),
+  cpf VARCHAR(255),
+  data_nascimento DATE,
+  telefone VARCHAR(255),
+  email VARCHAR(255),
+  data_cadastro DATE,
+  sexo VARCHAR(255),
+  estado_civil VARCHAR(255),
+  ativo BOOLEAN,
+  endereco VARCHAR(255)
 );
 
-CREATE TABLE funcionario (
-  id int PRIMARY KEY,
-  nome varchar(255),
-  telefone varchar(255),
-  endereco varchar(255),
-  salario float
+-- =========================
+-- TABELA PROFISSIONAL
+-- =========================
+CREATE TABLE profissional (
+  id_profissional INT PRIMARY KEY AUTO_INCREMENT,
+  nome VARCHAR(255),
+  cpf VARCHAR(255),
+  telefone VARCHAR(255),
+  email VARCHAR(255),
+  credencial VARCHAR(255)
 );
 
+-- =========================
+-- TABELA CATEGORIA_ARMA
+-- =========================
+CREATE TABLE categoria_arma (
+  id_categoria INT PRIMARY KEY AUTO_INCREMENT,
+  descricao VARCHAR(255),
+  calibre VARCHAR(255)
+);
+
+-- =========================
+-- TABELA ARMA
+-- =========================
 CREATE TABLE arma (
-  numero_de_serie varchar(255) PRIMARY KEY,
-  categoria varchar(255),
-  nome varchar(255),
-  quantidade int,
-  valor float
+  id_arma INT PRIMARY KEY AUTO_INCREMENT,
+  numero_serie VARCHAR(255),
+  fabricante VARCHAR(255),
+  modelo VARCHAR(255),
+  id_categoria INT,
+  status VARCHAR(255),
+  data_aquisicao DATE,
+  FOREIGN KEY (id_categoria) REFERENCES categoria_arma(id_categoria)
 );
 
-CREATE TABLE municao (
-  id int PRIMARY KEY,
-  tipo varchar(255),
-  nome varchar(255),
-  quantidade int,
-  valor float
+-- =========================
+-- TABELA SESSAO_TIRO
+-- =========================
+CREATE TABLE sessao_tiro (
+  id_sessao INT PRIMARY KEY AUTO_INCREMENT,
+  id_cliente INT,
+  id_profissional INT,
+  data_hora_inicio DATETIME,
+  data_hora_fim DATETIME,
+  valor_total DECIMAL(10,2),
+  FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente),
+  FOREIGN KEY (id_profissional) REFERENCES profissional(id_profissional)
 );
 
-CREATE TABLE acessorio (
-  id int PRIMARY KEY,
-  categoria varchar(255),
-  nome varchar(255),
-  quantidade int,
-  cor varchar(255),
-  valor float
+-- =========================
+-- TABELA ALUGUEL_ARMA
+-- =========================
+CREATE TABLE aluguel_arma (
+  id_aluguel INT PRIMARY KEY AUTO_INCREMENT,
+  id_sessao INT,
+  id_arma INT,
+  tempo_utilizacao INT,
+  valor_aluguel DECIMAL(10,2),
+  FOREIGN KEY (id_sessao) REFERENCES sessao_tiro(id_sessao),
+  FOREIGN KEY (id_arma) REFERENCES arma(id_arma)
 );
 
-CREATE TABLE venda (
-  id int PRIMARY KEY,
-  id_cliente int,
-  id_funcionario int,
-  numero_de_serie varchar(255),
-  id_acessorio int,
-  quantidade_de_acessorio int,
-  id_municao int,
-  quantidade_municao int,
-  posse_da_arma bit,
-  valor float
+-- =========================
+-- TABELA PAGAMENTO
+-- =========================
+CREATE TABLE pagamento (
+  id_pagamento INT PRIMARY KEY AUTO_INCREMENT,
+  id_sessao INT,
+  data_pagamento DATE,
+  valor DECIMAL(10,2),
+  forma_pagamento VARCHAR(255),
+  FOREIGN KEY (id_sessao) REFERENCES sessao_tiro(id_sessao)
 );
 
-CREATE TABLE aluguel (
-  id int PRIMARY KEY,
-  id_cliente int,
-  id_funcionario int,
-  numero_de_serie varchar(255),
-  id_acessorio int,
-  id_municao int,
-  quantidade_municao int,
-  tempo datetime,
-  valor float
+-- =========================
+-- TABELA MANUTENCAO
+-- =========================
+CREATE TABLE manutencao (
+  id_manutencao INT PRIMARY KEY AUTO_INCREMENT,
+  id_arma INT,
+  data_entrada DATE,
+  data_saida DATE,
+  descricao VARCHAR(255),
+  custo DECIMAL(10,2),
+  FOREIGN KEY (id_arma) REFERENCES arma(id_arma)
 );
-
-CREATE TABLE estoque (
-  id int PRIMARY KEY,
-  id_produto int,
-  tipo_produto varchar(255),
-  quantidade int,
-  observacoes varchar(255)
-);
-
-ALTER TABLE venda ADD FOREIGN KEY (id_cliente) REFERENCES cliente (id);
-
-ALTER TABLE venda ADD FOREIGN KEY (id_funcionario) REFERENCES funcionario (id);
-
-ALTER TABLE venda ADD FOREIGN KEY (numero_de_serie) REFERENCES arma (numero_de_serie);
-
-ALTER TABLE venda ADD FOREIGN KEY (id_acessorio) REFERENCES acessorio (id);
-
-ALTER TABLE venda ADD FOREIGN KEY (id_municao) REFERENCES municao (id);
-
-ALTER TABLE aluguel ADD FOREIGN KEY (id_cliente) REFERENCES cliente (id);
-
-ALTER TABLE aluguel ADD FOREIGN KEY (id_funcionario) REFERENCES funcionario (id);
-
-ALTER TABLE aluguel ADD FOREIGN KEY (numero_de_serie) REFERENCES arma (numero_de_serie);
-
-ALTER TABLE aluguel ADD FOREIGN KEY (id_acessorio) REFERENCES acessorio (id);
-
-ALTER TABLE aluguel ADD FOREIGN KEY (id_municao) REFERENCES municao (id);
