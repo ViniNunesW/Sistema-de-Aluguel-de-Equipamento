@@ -1,5 +1,5 @@
 # Sistema-de-Aluguel-de-Equipamento
-Sistema: MySQL
+Sistema: Sitema de Alguel de Armas para Estande
 
 Grupo B: Guilherme Rodrigues Fagundes, Kaio Souza Cadorin, Miguel Arcanjo Tomaz e Vinícius Nunes Westrup
 
