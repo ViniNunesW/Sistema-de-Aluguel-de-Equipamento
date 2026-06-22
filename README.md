@@ -1,7 +1,6 @@
 ## Projeto Sistema de Alguel de Armas para Estande de Tiro
 
-Este projeto consiste na criação de um modelo físico de um banco de dados para um sistema XYZ.
-O projeto foi desenvolvido em C# .NET, criando um CRUD para cadastro dos itens xyz, onde a aplicacao faz conexão com o banco de dados através de uma biblioteca chamada entity framework e realiza operações de adição, aualização e deleção dos dados, usando todos os conceitos e dinâmicas práticas de SQL desenvolvidas em aula.
+Este projeto consiste na criação do modelo físico de um banco de dados para um sistema de aluguel de armas de um estande de tiro. Além da modelagem e implementação do banco de dados, foi desenvolvido um sistema com interface gráfica para realizar as operações de cadastro, consulta, atualização e exclusão de clientes (CRUD). A aplicação estabelece conexão com o banco de dados por meio de uma biblioteca de acesso a dados, permitindo a manipulação das informações armazenadas de forma segura e eficiente. Durante o desenvolvimento, foram aplicados os conceitos de modelagem de dados, integridade referencial, consultas SQL, índices, funções, procedimentos armazenados e gatilhos (triggers), consolidando na prática os conhecimentos adquiridos ao longo da disciplina.
 
 ### Integrantes
 Guilherme Rodrigues Fagundes - @GuiRFagundes <br>
@@ -33,23 +32,49 @@ Abaixo, segue os scripts SQL separados por tipo:
 
 Coloque aqui a descrição de todas as ferramentas e tecnologias que usou para desenvolvimento do seu projeto.
 
-- Linguagem de Programação C# .NET.<br>
-- Framework .NET 4.6
-- Projeto Windows Forms
-- Biblioteca Entity Framework para SQL Server (nativo)
+- Linguagem de Programação Python 3
+- Framework Flask
+- Banco de Dados MySQL 8
+- Biblioteca mysql-connector-python para conexão com o banco de dados
+- HTML5 para estrutura das páginas
+- CSS3 e Bootstrap 5 para estilização da interface
+- Ambiente de desenvolvimento Visual Studio Code
+- Servidor local Flask para execução da aplicação
 
 ### Passos para execução do CRUD
 
-Coloque aqui todos os códigos passo-a-passo para que outra pessoa possa reproduzir o seu projeto.
+- Clonar o repositório.
+git clone https://github.com/SEU-USUARIO/SEU-REPOSITORIO.git
 
-1. Instrução 1.
-```
-código 1
-```
-1. Instrução 2.
-```
-código 2
-```
+- Acessar a pasta do projeto.
+cd SEU-REPOSITORIO
+
+- Instalar as dependências necessárias.
+pip install flask mysql-connector-python
+
+- Criar o banco de dados MySQL.
+CREATE DATABASE armas_estande;
+
+- Executar o script de criação das tabelas.
+-- Executar o arquivo schema.sql
+
+- Executar o script de população do banco de dados.
+-- Executar o arquivo populacao.sql
+
+- Configurar as credenciais do banco de dados no arquivo app.py.
+host="localhost"
+user="root"
+password="sua_senha"
+database="armas_estande"
+
+-Executar a aplicação.
+python app.py
+
+- Acessar o sistema pelo navegador.
+http://127.0.0.1:5000
+
+- Utilizar as funcionalidades de cadastro, consulta, edição e exclusão de clientes disponíveis na interface do sistema.
+CRUD de Clientes
 
 [Codigo Fonte](crud/)
 
