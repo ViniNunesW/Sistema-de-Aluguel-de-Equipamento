@@ -88,3 +88,17 @@ INSERT INTO aluguel_arma (id_aluguel, id_sessao, id_arma, id_municao, tempo_util
 (8, 8, 1, 1, 60, 50, 225.00),
 (9, 9, 8, 7, 60, 25, 282.50),
 (10, 10, 5, 4, 60, 30, 330.00);
+
+-- 8. POPULANDO MANUTENÇÃO
+INSERT INTO manutencao (id_arma, data_entrada, data_saida, descricao, custo)
+VALUES
+(1,'2026-01-05','2026-01-06','Limpeza geral',50.00),
+(2,'2026-01-06','2026-01-07','Revisão mecânica',80.00),
+(3,'2026-01-07','2026-01-08','Troca de peças',120.00),
+(4,'2026-01-08','2026-01-09','Lubrificação',40.00),
+(5,'2026-01-09','2026-01-10','Ajuste técnico',60.00),
+(6,'2026-01-10','2026-01-11','Inspeção',70.00),
+(7,'2026-01-11','2026-01-12','Calibração',150.00),
+(8,'2026-01-12','2026-01-13','Limpeza básica',30.00),
+(9,'2026-01-13','2026-01-14','Revisão completa',200.00),
+(10,'2026-01-14','2026-01-15','Teste funcional',90.00);
