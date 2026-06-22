@@ -6,16 +6,16 @@ CREATE FUNCTION fn_CalcularTaxaInstrutor (
 RETURNS DECIMAL(10,2)
 DETERMINISTIC
 BEGIN
-    DECLARE v_posse BOOLEAN;
+    DECLARE v_ativo TINYINT;
     DECLARE v_taxa DECIMAL(10,2) DEFAULT 0.00;
 
-    -- Busca se o cliente tem posse de arma (true/1 ou false/0)
-    SELECT posse_de_arma INTO v_posse 
+    -- Verifica se o cliente é um membro ativo/filiado do estande
+    SELECT ativo INTO v_ativo 
     FROM cliente 
-    WHERE id = p_id_cliente;
+    WHERE id_cliente = p_id_cliente;
 
-    -- Se não tiver a posse, cobra uma taxa de instrutor de R$ 100,00
-    IF v_posse = FALSE THEN
+    -- Se o cliente não for ativo (visitante sem registro), aplica taxa de instrutor de R$ 100.00
+    IF v_ativo = 0 OR v_ativo IS NULL THEN
         SET v_taxa = 100.00;
     END IF;
 
