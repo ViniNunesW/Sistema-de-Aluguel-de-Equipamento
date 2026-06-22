@@ -5,4 +5,4 @@ Grupo B: Guilherme Rodrigues Fagundes, Kaio Souza Cadorin, Miguel Arcanjo Tomaz 
 
 Diagrama do banco de dados: [https://dbdiagram.io/d/6a275fa28eb8ca4bfe7f850b](https://dbdiagram.io/d/modelo_fisico-6a38267a5c789b8acbcc5858)
 
-Slides: (https://www.canva.com/design/DAHNU3hsk8s/bDJC9nXoP_z2NiwfJK2mOA/edit)
+Slides: https://www.canva.com/design/DAHNU3hsk8s/bDJC9nXoP_z2NiwfJK2mOA/edit
